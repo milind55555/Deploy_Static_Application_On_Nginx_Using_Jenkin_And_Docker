@@ -51,7 +51,7 @@ pipeline {
 	stage('Push to DockerHub') {
     steps {
         withDockerRegistry([ credentialsId: 'dockerhub-creds', url: '' ]) {
-            sh 'docker push your-dockerhub/static-website'
+            sh 'docker push milind1122/deploy_jenkin_and_docker_on_static-website'
         }
     }
 }
