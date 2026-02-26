@@ -192,3 +192,8 @@ Developer → GitHub → Jenkins Pipeline → Docker Build → DockerHub → Pro
 ✅ Dockerized static website
 ✅ Automated build, test, push & deploy
 ✅ Industry-standard DevOps workflow
+
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4db8944a-8624-4312-a2a3-fff3078260d2" />
+
