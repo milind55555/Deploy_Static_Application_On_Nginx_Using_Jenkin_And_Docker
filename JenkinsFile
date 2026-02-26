@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "static-website"
-        CONTAINER_NAME = "static-container"
+        CONTAINER_NAME = "sad_germain"
         DOCKERHUB_REPO = "milind1122/deploy_jenkin_and_docker_on_static-website"
     }
 
