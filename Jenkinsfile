@@ -1,0 +1,67 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "static-website"
+        CONTAINER_NAME = "static-container"
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/milind55555/Deploy_Static_Application_On_Nginx_Using_Jenkin_And_Docker.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh 'docker build -t $IMAGE_NAME .'
+                }
+            }
+        }
+
+        stage('Test Docker Image') {
+            steps {
+                script {
+                    sh '''
+                    docker run -d --name test-container -p 8081:80 $IMAGE_NAME
+                    sleep 10
+                    docker ps
+                    docker stop test-container
+                    docker rm test-container
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy to Nginx Server') {
+            steps {
+                script {
+                    sh '''
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+                    docker run -d --name $CONTAINER_NAME -p 80:80 $IMAGE_NAME
+                    '''
+                }
+            }
+        }
+    }
+	stage('Push to DockerHub') {
+    steps {
+        withDockerRegistry([ credentialsId: 'dockerhub-creds', url: '' ]) {
+            sh 'docker push milind1122/deploy_jenkin_and_docker_on_static-website'
+        }
+    }
+}
+	
+    post {
+        success {
+            echo "Deployment Successful!"
+        }
+        failure {
+            echo "Deployment Failed!"
+        }
+    }
+}
