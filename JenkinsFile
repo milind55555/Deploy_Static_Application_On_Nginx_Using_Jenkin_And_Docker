@@ -10,7 +10,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/your-repo/static-website.git'
+                git 'https://github.com/milind55555/Deploy_Static_Application_On_Nginx_Using_Jenkin_And_Docker.git'
             }
         }
 
