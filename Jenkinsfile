@@ -9,11 +9,12 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/milind55555/Deploy_Static_Application_On_Nginx_Using_Jenkin_And_Docker.git'
-            }
-        }
+      stage('Checkout Code') {
+    steps {
+        git branch: 'main',
+            url: 'https://github.com/milind55555/Deploy_Static_Application_On_Nginx_Using_Jenkin_And_Docker.git'
+    }
+}
 
         stage('Build Docker Image') {
             steps {
